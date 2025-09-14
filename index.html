@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>gentec</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 3em;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        p {
+            font-size: 1.3em;
+            animation: slideUp 2s ease-in-out;
+        }
+
+        .card {
+            margin: 20px auto;
+            padding: 20px;
+            width: 350px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            animation: zoomIn 1.5s ease;
+        }
+
+        .info {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        /* Products */
+        .products {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px auto;
+            gap: 20px;
+        }
+
+        .product {
+            background: rgba(255, 255, 255, 0.2);
+            width: 180px;
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .product:hover {
+            transform: scale(1.1);
+            background: rgba(255,255,255,0.3);
+        }
+
+        .product h3 {
+            margin: 10px 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .my-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
+            border: 3px solid white;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Gentec Medicals Pvt Ltd</h1>
+    <p>Health is the greatest wealth.</p>
+
+    <div class="card">
+        <div class="info"><strong>Name:</strong> Santhosh K Patel</div>
+        <div class="info"><strong>Phone:</strong> 7676093540</div>
+        <!-- Profile photo -->
+        <a href="contact.html">
+            <img class="my-photo" src="mypic.jpg" alt="My Photo">
+        </a>
+    </div>
+
+    <!-- Product List -->
+    <h2>Our Products</h2>
+    <div class="products">
+        <a href="product1.html" class="product">
+            <h3>Monitor</h3>
+        </a>
+        <a href="product2.html" class="product">
+            <h3>ECG Machine</h3>
+        </a>
+        <a href="product3.html" class="product">
+            <h3>OT Light</h3>
+        </a>
+       
+        <a href="product5.html" class="product">
+            <h3>Oxygen Concentrator</h3>
+        </a>
+        <a href="product6.html" class="product">
+            <h3>Syringe Pump</h3>
+        </a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buy Product</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.1);
+      padding: 25px;
+      border-radius: 15px;
+      width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      text-align: left;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 15px;
+      font-size: 1em;
+    }
+    .btn {
+      display: inline-block;
+      background: #fff;
+      color: #0072ff;
+      padding: 12px 25px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #333;
+      color: white;
+    }
+    #thankyou {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #ff0;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Buy Product</h1>
+    <form id="orderForm">
+      <label for="product">Product</label>
+      <input type="text" id="product" name="product" readonly>
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="text" id="phone" name="phone" placeholder="Enter phone number" required>
+
+      <label for="address">Delivery Address</label>
+      <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
+
+      <button type="submit" class="btn">✅ Confirm Order</button>
+    </form>
+
+    <div id="thankyou">🎉 Thank you! Your order has been placed.</div>
+    <br>
+    <a href="index.html" class="btn">⬅ Back to Home</a>
+  </div>
+
+  <!-- EmailJS Library -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+  <script>
+    // Init EmailJS (replace with your own EmailJS userID)
+    emailjs.init("YOUR_EMAILJS_USER_ID");
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const product = urlParams.get('product');
+    if(product){
+      document.getElementById("product").value = product;
+    }
+
+    document.getElementById("orderForm").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const address = document.getElementById("address").value;
+
+      // ✅ Show Thank You message
+      document.getElementById("thankyou").style.display = "block";
+
+      // ✅ Send email via EmailJS
+      emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
+        product: product,
+        name: name,
+        phone: phone,
+        address: address
+      }).then(function(response) {
+        console.log("Email sent!", response.status, response.text);
+      }, function(error) {
+        console.error("Email failed:", error);
+      });
+
+      // ✅ WhatsApp auto-message
+      const whatsappMsg = `Hello, I want to order:\nProduct: ${product}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
+      window.open(`https://wa.me/917676093540?text=${encodeURIComponent(whatsappMsg)}`, "_blank");
+    });
+  </script>
+</body>
+</html>
